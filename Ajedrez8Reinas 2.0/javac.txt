@@ -1,0 +1,2 @@
+javac -d bin -cp src -s src src\*.java
+java -ea -cp bin Prueba

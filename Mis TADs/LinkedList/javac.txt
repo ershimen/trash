@@ -1,0 +1,7 @@
+Opción 1:
+javac -d bin -cp src -s src src\*.java
+java -ea -cp bin TestLinkedList
+
+Opción 2:
+javac -Xlint:unchecked -d bin -cp src -s src src/TestLinkedList.java
+java -ea -cp bin TestLinkedList

@@ -1,0 +1,1 @@
+Versión mejorada de Ajedrez8Reinas utilizando ArrayList de JAVA
