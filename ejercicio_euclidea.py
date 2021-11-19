@@ -30,30 +30,3 @@ print(10*'-', "A:", A.shape, 10*'-', '\n', A, '\n')
 print(10*'-', "B:", B.shape, 10*'-', '\n', B, '\n')
 print(10*'-', "R:", R.shape, 10*'-', '\n', R, '\n')
 print(10*'-', "R2:", R2.shape, 10*'-', '\n', R2, '\n')
-
-# Buenos días.
-#
-# He resuelto el problema propuesto y la solución final es la siguiente (suponiendo que se ha importado numpy como n):
-#
-# R = n.sqrt(n.sum(n.power((n.expand_dims(X, axis=1) - n.expand_dims(M, axis=0)), 2), axis=2))
-#
-# Explicación:
-# Como X.shape = (fx, c) y M.shape = (fm, c), no se puede hacer broadcasting porque cada dimensión
-# tiene que ser igual a 1 o igual entre las dos matrices.
-# Si se añaden dimensiones se puede solucionar el problema (hay varias soluciones posibles):
-# Transformamos las dimensiones de X en (fx, 1, c):
-# 	Xaux = n.expand_dims(X, axis=1)
-# Transformamos las dimensiones de M en (1, fm, c):
-# 	Yaux = n.expand_dims(M, axis=0)
-# De esta forma cada par de dimensiones es compatible.
-# La distancia euclídea de v = (v1, ..., vn) y w = (w1, ..., wn) se define como sqrt((v1-w1)^2 + ... + (vn-wn)^2).
-# Primero se calcula la resta de las dos matrices (elemento a elemento):
-# 	resta = Xaux - Yaux
-# Cuadrado (elemento a elemento):
-# 	cuadrado = n.power(resta, 2)
-# Suma:
-# 	suma = n.sum(cuadrado, axis=2)   # sumar las columnas
-# Raíz cuadrada:
-# 	sqrt = n.sqrt(suma)
-#
-# Un saludo.
