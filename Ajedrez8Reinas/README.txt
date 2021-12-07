@@ -1,1 +1,1 @@
-La versión mejorada está en Ajedrez8Reinas 2.0
+Mirar Ajedrez8Reinas 3.0
