@@ -1,9 +1,12 @@
-# nonogram solver
+"""Nonogram solver"""
+
 from importlib.abc import TraversableResources
 import numpy as np
 import time
 
 def print_grid2(grid, h, w):
+    """Imprime el tablero.
+    """
     print("\n\t+", "---+"*w, sep='')
     for i in range(h):
         print("\t|", end='')
@@ -17,6 +20,9 @@ def print_grid2(grid, h, w):
         print("\n\t+", "---+"*w, sep='')
 
 def cabe2(arr, i, n):
+    """ Retorna True si la secuencia de longitud n cabe a partir de la posicion i de arr,
+    False en caso contrario.
+    """
     if i > 0 and arr[i-1]: # Si tiene un True detras
         return False
     index = i
@@ -31,11 +37,15 @@ def cabe2(arr, i, n):
     return True
 
 def fill(arr):
+    """Rellena las posiciones vacías (None) con False.
+    """
     for i in range(len(arr)):
         if arr[i] is None: # Cambiar None por False
             arr[i] = False
 
 def combinations2(res, sol, sol_i, vals, vals_i):
+    """Obtiene todas las combinaciones posibles de las secuencias de longitud indicadas
+    en vals."""
     if len(vals) == 1 and vals[0] == 0: # si se buscan combinaciones de 0 conjuntos
         fill(sol)
         res.append(sol)
@@ -67,6 +77,8 @@ def combinations2(res, sol, sol_i, vals, vals_i):
     return res
 
 def and_grid(grid): # Se supone que no contiene None y que len(grid) > 0
+    """Calcula los valores comunes para todas las combinaciones posibles de una
+    secuencia de valores."""
     col_i = 0
     row_i = 0
     rows = len(grid)
@@ -83,11 +95,15 @@ def and_grid(grid): # Se supone que no contiene None y que len(grid) > 0
     return res
 
 def vector_and(v1, v2): # Se supone que len(v1) = len(v2)
+    """Actualiza los valores nulos de v1 con los valores de v2.
+    """
     for i in range(len(v1)):
         if v1[i] is None:
             v1[i] = v2[i]
 
 def solve2(row_vals, col_vals):
+    """Busca el tablero solucion.
+    """
     tablero = np.array([[None for _ in range(len(col_vals))]]*len(row_vals), dtype=object)
     turno = 0 # Turno de fila
     unchanged = 0 # Numero de iteraciones sin cambios en el tablero
@@ -126,6 +142,8 @@ def solve2(row_vals, col_vals):
     return (tablero, n_iter)
 
 def test_solve(row_vals, col_vals):
+    """Prueba la funcion solve2.
+    """
     print("Tablero %dx%d" % (len(row_vals), len(col_vals)))
     t0 = time.time()
     res = solve2(row_vals, col_vals)
